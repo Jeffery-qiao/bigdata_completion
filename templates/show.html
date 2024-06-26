@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <style> body { margin: 0; font-family: Arial, Helvetica, sans-serif; }
+
+.sidebar { height: 100%; width: 200px; position: fixed; z-index: 1; top: 0; right: 0; background-color: #0e2453; overflow-x: hidden; padding-top: 20px; }
+
+.sidebar a { padding: 6px 8px 6px 16px; text-decoration: none; font-size: 25px; color: #ffffff; display: inline-block; }
+
+.sidebar a:hover { color: #f1f1f1; }
+
+.main { margin-left: 200px; /* Same as the width of the sidebar */ padding: 0px 10px; }
+
+.logo { display: flex; align-items: center; justify-content: center; margin-bottom: 10px; }
+.sidebar ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+}
+
+.logo img { width: 50px; height: 50px; margin-right: 10px; }
+.system-name {
+            font-size: 16px;    /* 设置系统名称字体大小 */
+            font-weight: bold;  /* 设置系统名称字体加粗 */
+            color: #ffffff;
+        }
+.sidebar ul li a.icon1::before {
+    content: url('C:\\Users\\ts\\Desktop\\毕设\\flask_app\\static\\img\\logo.jpg');
+    margin-right: 5px;
+}
+@media screen and (max-width: 700px) { .sidebar { width: 100%; height: auto; position: relative; } .sidebar a { float: left; } .main { margin-left: 0; } }
+
+@media screen and (max-width: 400px) { .sidebar a { text-align: center; float: none; } } </style>
+    <!-- <style>
+        .nav {
+            margin: 0;
+            padding: 0;
+            list-style: none;
+            width: 200px;
+            list-style: none;   /* 去除列表符号 */
+            position: fixed;    /* 固定定位，固定在浏览器当前窗口 */
+            right: 0;           /* 将导航栏固定在页面最右侧 */
+            top: 0;             /* 将导航栏顶格在页面顶部 */
+            bottom: 0;          /* 将导航栏顶格在页面底部 */
+            background-color: #ffffff; /* 设置背景颜色 */
+            padding: 10px;      /* 设置内边距 */
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 10px;
+        }
+
+        .logo img {
+            width: 50px;        /* 设置logo图片宽度 */
+            height: 50px;       /* 设置logo图片高度 */
+            margin-right: 10px;
+        }
+
+        .system-name {
+            font-size: 16px;    /* 设置系统名称字体大小 */
+            font-weight: bold;  /* 设置系统名称字体加粗 */
+        }
+        .nav a {
+            height: 30px;
+            color: white;
+            font-size: 24px;
+            display: block;
+            background-color: #7145b8;
+            border-bottom: none; /* 去除底部虚线分割线 */
+            text-decoration: none;
+            text-align: center;
+            padding-top: 10px;
+            padding-bottom: 10px;
+        }
+
+        ul:first-of-type a {
+            border-top: none; /* 去除顶部虚线分割线 */
+        }
+        
+        .nav a:hover{
+            background-color: darkcyan;
+        }
+        .move{
+            display: inline-block;
+            background-color:#ff8a5e;
+            border: 4px solid #ff8a5e;
+            height: 45px;
+            position: absolute;
+            top: 75px;
+            transition: top 0.4s ease-in-out;
+            -webkit-transition: top 0.4s ease-in-out;
+        }
+        .nav li:nth-child(1):hover~.move {
+            top: 75px;
+        }
+        .nav li:nth-child(2):hover~.move {
+            top: 125px;
+        }
+        .nav li:nth-child(3):hover~.move {
+            top: 175px;
+        }
+        .nav li:nth-child(4):hover~.move {
+            top: 225px;
+        }
+ 
+    </style> -->
+
+    <title>评论展示</title>
+</head>
+<body>
+    <!-- 锚点导航栏 -->
+    <div class="sidebar"> 
+        <div class="logo"> 
+            <img src="{{ url_for('static', filename='img/logo.jpg')}}"> 
+            <span class="system-name">微博舆情分析系统</span> 
+        </div> 
+        <ul> <li><a href="#box1"><img src="{{ url_for('static', filename='img/1.jpg')}}">好评列表</a></li>
+            <br></br>
+             <li><a href="#box2"><img src="{{ url_for('static', filename='img/2.jpg')}}">差评列表</a></li> 
+             <br></br>
+             <li><a href="#box3"><img src="{{ url_for('static', filename='img/3.jpg')}}">情感分析饼图</a></li> 
+             <br></br>
+             <li><a href="#box4"><img src="{{ url_for('static', filename='img/4.jpg')}}">词云图展示</a></li>
+             <br></br>
+             <li><a href="#box5"><img src="{{ url_for('static', filename='img/1.jpg')}}">返回搜索</a></li>
+        </ul>
+    </div>
+    <div id="box1" style="background-color: #c0c0c0;">
+        <h1>评论列表</h1>
+        <ul>
+            {% for comment in comments %}
+            <li>{{ comment }}</li>
+            {% endfor %}
+        </ul>
+    </div>
+    <div id="box2" style="background-color: #76797a;">
+    
+        <h2>低分评论列表</h2>
+        <ul>
+            {% for low_score_comment in low_scores_comments %}
+            <li>{{ low_score_comment }}</li>
+            {% endfor %}
+        </ul>
+    </div>
+    <div id="box3" style="background-color: #90b2da;">
+        <h3>情感分析饼图</h3>
+        <img src="static/pie_chart.png" alt="Sentiment Analysis">
+    </div>
+    <div id="box4" style="background-color: #a7a386;">
+        <h3>用户评论词云图</h3>
+        <img src="static/ret.png" alt="Sentiment Analysis">
+    </div>
+    <!-- 在搜索结果页面中添加一个返回按钮 -->
+    <div id="box4">
+        <button class="button" onclick="location.href='/index.html'">返回搜索</button>
+    </div>
+</body>
+</html>
+

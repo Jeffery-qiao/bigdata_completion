@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>搜索到的帖子</title>
+    <style>
+        .table-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+
+        table {
+            border-collapse: collapse;
+        }
+
+        th, td {
+            padding: 8px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+
+        tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+        /* 锚点导航栏列表样式 */
+        .anchor ul {
+            list-style: none;   /* 去除列表符号 */
+            position: fixed;    /* 固定定位，固定在浏览器当前窗口 */
+            right: 150px;
+            bottom: 200px;
+        }
+        
+        /* 锚点导航栏列表项样式 */
+        .anchor ul li {
+            width: 100px;
+            height: 50px;
+            line-height: 50px;  /* 设置行高，文本垂直居中 */
+            text-align: center;  /* 文本水平居中 */
+            border: 1px solid black;  /* 设置边距 */
+        }
+
+        /* 锚点导航栏列表项超链接样式 */
+        .anchor ul li a{
+            text-decoration: none;  /* 去除下划线 */
+        }
+
+        /* 模块样式 */
+        .box {
+            /* 模拟实际内容 */
+            height: 600px;
+            width: 900px;
+            background-color: paleturquoise;
+            margin: 0 auto;
+        }
+    </style>
+</head>
+<body>
+    <!-- <div class="sidebar">
+        <a href="#">导航链接1</a>
+        <a href="#">导航链接2</a>
+        <a href="#">导航链接3</a>
+     </div> -->
+    <h1 class="center">搜索到的帖子</h1>
+    <div class="table-container">
+        <table>
+            <tr>
+                <th>序号</th>
+                <th>时间</th>
+                <th>主题</th>
+                <th>作者</th>
+            </tr>
+            {% for row in table %}
+            <tr>
+                <td>{{ loop.index }}</td>
+                <td>{{ row[0] }}</td>
+                <td>{{ row[1] }}</td>
+                <td>{{ row[2] }}</td>
+            </tr>
+            {% endfor %}
+        </table>
+    </div>
+    <p class="center">请输入想爬取的帖子编号：</p>
+    <form id="myForm" action="{{ url_for('get_post') }}" method="POST" enctype="multipart/form-data">
+        <label for="post_id">Post ID:</label>
+        <input type="number" id="post_id" name="post_id" required>
+        <button type="submit">搜索</button> 
+    </form>
+
+
+
+</body>
+</html>

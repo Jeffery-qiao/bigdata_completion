@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>搜索结果</title>
+    <style>
+        .payment-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-top: 50px;
+        }
+
+        .payment-container img {
+            width: 200px;
+            height: 200px;
+            margin: 10px;
+        }
+    </style>
+</head>
+<body>
+    <h1>搜索结果</h1>
+    <table>
+        <a href="{{ url_for('show') }}">点击查看</a>
+    </table>
+
+    <div class="payment-container">
+        <img src="static/weixinpicture.png" alt="Alipay QR Code">
+        <img src="static/zfbpicture.jpg" alt="WeChat QR Code">
+    </div>
+</body>
+</html>

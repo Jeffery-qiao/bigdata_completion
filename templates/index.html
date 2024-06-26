@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <link rel="stylesheet" type="text/css" href= "{{ url_for('static', filename = 'css/search.css') }}">
+   <script defer src="https://use.fontawesome.com/releases/v5.0.6/js/all.js"></script>
+   <title>欢迎登陆</title>
+</head>
+<body>
+   <div style="color: white;">
+      您好，{{ username }}
+   </div>
+   <div class="search-box">
+      <form method="POST" action="{{ url_for('search') }}">
+         <input class="search-txt" type="text" name="keyword" placeholder="what are you looking for?" />
+         <a class="search-btn" href="#">
+         <i class="fas fa-search"></i>
+         </a>
+      </form>    
+   </div>
+   <div class="card-body">
+      <a href="{{ url_for('user_login') }}" class="btn btn-primary" style="color: white;">退出</a>
+   </div>
+
+</body>
+</html>
