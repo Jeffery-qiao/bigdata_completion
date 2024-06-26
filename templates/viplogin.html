@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet"  type="text/css" href="/static/style.css">
+    <title>登录</title>
+</head>
+<body>
+    <div>
+    <h1>vip用户登录</h1>
+    <a href="{{ url_for('user_login') }}">普通用户登录</a>
+    <!--将登陆信息放到一个form中-->
+    <form method="POST">
+        <input type="text" name="vipname" placeholder="请输入用户名" />
+        <br/>
+        <input type="password" name="vippassword" placeholder="请输入密码（小于12位）" />
+        <br/>
+         <!--jinja2的函数-->
+        {% if message %} {{message}} {% endif %}
+        <br/>
+        <input type="submit" value="登录" />
+        <input type="reset" value="重置" />
+        <!--跳转到register的页面-->
+        <a href="{{ url_for('vipregister') }}">注册</a>
+    </form>
+    </div>
+</body>
+</html>
